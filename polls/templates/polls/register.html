@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{#{% load static %}#}
+<html lang="en">
+<head>
+{#    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .errorlist{
+    color:red;
+    }
+
+</style>
+<body>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <p>{{form.non_field_errors}}</p>
+        {% endif %}
+        <table>
+            <tr>
+                <td><label id="{{form.email.id_for_label}}">{{form.email.label}}</label></td>
+                <td>{{form.email.errors}}{{form.email}}</td>
+                </tr>
+            <tr>
+                <td><label id="{{form.user.id_for_label}}">{{form.user.label}}</label> </td>
+                <td>{{form.user.errors}}{{form.user}}</td>
+            </tr>
+             <tr>
+                <td><label id="{{form.newpass.id_for_label}}">{{form.newpass.label}}</label> </td>
+                <td>{{form.newpass.errors}}{{form.newpass}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.repass.id_for_label}}">{{form.repass.label}}</label> </td>
+                <td>{{form.repass.errors}}{{form.repass}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.line_id.id_for_label}}">{{form.line_id.label}}</label> </td>
+                <td>{{form.line_id.errors}}{{form.line_id}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.facebook.id_for_label}}">{{form.facebook.label}}</label> </td>
+                <td>{{form.facebook.errors}}{{form.facebook}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.gender.id_for_label}}">{{form.gender.label}}</label> </td>
+                <td>{{form.gender.errors}}{{form.gender}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.birth.id_for_label}}">{{form.birth.label}}</label> </td>
+                <td>{{form.birth.errors}}{{form.birth}}</td>
+            </tr>
+        </table>
+        <input type="submit" value="regist">
+    </form>
+
+
+
+</body>
+</html>

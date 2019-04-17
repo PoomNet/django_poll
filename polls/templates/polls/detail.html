@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- lab week 1 -->
+<!--{#<ol>#}-->
+<!--{#    {% for poll in poll_list.questions %}#}-->
+<!--{#    <li>{{poll.text}}</li>#}-->
+<!--{#        <ul>#}-->
+<!--{#        {% for poll1 in poll.choices %}#}-->
+<!--{#    <li>{{poll1.text}}</li>#}-->
+<!--{#    {% endfor %}#}-->
+<!--{#        </ul>#}-->
+<!--{#    {% endfor %}#}-->
+<!--{#</ol>#}-->
+
+    <h1>{{poll.title}}</h1>
+
+    <h3>Question list</h3>
+    <p>{{ poll.id }}</p>
+    <ul>
+<form action="{% url 'detail' poll.id %}" method="GET">
+        {% for question in poll.question_set.all %}
+
+        <li>{{question.text}}</li>
+            {{ question.id }}
+
+        <ul>
+
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="{{ question.id }}" value="{{ choice.id }}"
+            {% if choice.anwser %}checked="cheecked"{% endif %}>
+            {{choice.text}} - {{choice.answer}}<br>
+            {% endfor %}
+
+
+        </ul>
+
+        {% endfor %}
+<a href="{% url 'comment' %}">เพิ่ม comment</a><input type="submit" value="Post"/>
+    </form>
+    </ul>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{#{% load static %}#}
+<html lang="en">
+<head>
+{#    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .errorlist{
+    color:red;
+    }
+
+</style>
+<body>
+    <form method="post" action="{% url 'comment' %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <p>{{form.non_field_errors}}</p>
+        {% endif %}
+        <table>
+            <tr>
+                <td><label id="{{form.title.id_for_label}}">{{form.title.label}}</label></td>
+                <td>{{form.title.errors}}{{form.title}}</td>
+                <td><label id="{{form.body.id_for_label}}">{{form.body.label}}</label> </td>
+                <td>{{form.body.errors}}{{form.body}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.tel.id_for_label}}">{{form.tel.label}}</label></td>
+                <td>{{form.tel.errors}}{{form.tel}}</td>
+                <td><label id="{{form.email.id_for_lable}}">{{form.email.label}}</label> </td>
+                <td>{{form.email.errors}}{{form.email}}</td>
+            </tr>
+        </table>
+        <input type="submit" value="comment">
+    </form>
+
+
+
+</body>
+</html>

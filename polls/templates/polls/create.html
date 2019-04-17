@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{#{% load static %}#}
+<html lang="en">
+<head>
+{#    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .errorlist{
+    color:red;
+    }
+
+</style>
+<body>
+    <form method="post" action="{% url 'create' %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <p>{{form.non_field_errors}}</p>
+        {% endif %}
+        <table>
+            <tr>
+                <td><label id="{{form.title.id_for_label}}">{{form.title.label}}</label></td>
+                <td>{{form.title.errors}}{{form.title}}</td>
+                <td><label id="{{form.no_questios.id_for_label}}">{{form.no_questions.label}}</label> </td>
+                <td>{{form.no_questions.errors}}{{form.no_questions}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.start_date.id_for_label}}">{{form.start_date.label}}</label></td>
+                <td>{{form.start_date.errors}}{{form.start_date}}</td>
+                <td><label id="{{form.end_date.id_for_lable}}">{{form.end_date.label}}</label> </td>
+                <td>{{form.end_date.errors}}{{form.end_date}}</td>
+            </tr>
+        </table>
+        <input type="submit" value="create">
+    </form>
+
+
+
+</body>
+</html>
